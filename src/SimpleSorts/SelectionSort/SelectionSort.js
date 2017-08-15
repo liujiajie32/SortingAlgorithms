@@ -42,7 +42,7 @@
   'use strict';
 
   /**
-   * Determining the input object is an array or not.
+   * Determine the input object is an array or not.
    * @param  {object}  o input object
    * @return {Boolean}   return true if o is an array, 
    *                     otherwise return false.
@@ -86,17 +86,19 @@
     }
 
     for(i=0; i<len; i++) {
-      // assume the current element is the extremum one
+      // assume the current element is an extremum, i.e. it's the maximun
+      // when dsc is false, minimum when dsc is true.
       extre = i;
 
-      // check the rest elements and marking the extremum one
-      for(j=i+1; j<len; j++){
-        if((!dsc && arr[j]<arr[extre])||(dsc && arr[j]>arr[extre])) {
+      // check the rest elements and marking the extremum
+      for(j=i+1; j<len; j++) {
+        // calculate (dsc)xor(arr[j]<arr[extre]) 
+        if(dsc != (arr[j]<arr[extre])) {
           extre = j;
         }
       }
 
-      // swap the current element with the extremun one
+      // swap the current element with the extremun
       if(i != extre) {
         _swap(arr, i, extre);
       }
