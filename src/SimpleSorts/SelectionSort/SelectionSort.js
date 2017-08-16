@@ -27,7 +27,9 @@
 ;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define([], factory);
+    define([], function() {
+      return window.sa = factory(window);
+    });
   } else if (typeof module === 'object' && module.exports) {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
@@ -35,19 +37,20 @@
     module.exports = factory();
   } else {
     // Browser globals (root is window)
-    root.sa = root.sa || {};
-    root.sa.SelectionSort = factory();
+    root.sa = factory(root);
 }
-}(this, function(undefined) {
+}(this, function(window, undefined) {
   'use strict';
 
+  var methodName = 'SelectionSort';
+
   /**
-   * Determine the input object is an array or not.
-   * @param  {object}  o input object
+   * Determine the input argument is an array or not.
+   * @param  {Array}  o input argument
    * @return {Boolean}   return true if o is an array, 
    *                     otherwise return false.
    */
-  var _isArray = function(o) {
+  var _isArray = Array.isArray || function(o) {
     return Object.prototype.toString.call(o)=='[object Array]';
   };
 
@@ -107,5 +110,8 @@
     return arr;
   }; // end of _selectionSort
 
-  return _selectionSort;
+
+  return (window ?
+            Object.assign(window.sa||{},{[methodName]:_selectionSort})
+          : _selectionSort);
 }));

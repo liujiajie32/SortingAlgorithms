@@ -1,0 +1,30 @@
+{
+  "name": "sortingalgorithms",
+  "version": "0.0.1",
+  "description": "Implementations of sorting algorithms in various languages.",
+  "main": " ",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liujiajie32/SortingAlgorithms.git"
+  },
+  "keywords": [
+    "sorting",
+    "algorithms"
+  ],
+  "author": "LIU Jiajie",
+  "license": "MIT",
+  "bugs": {
+    "mail": "liujiajie32@gmail.com",
+    "url": "https://github.com/liujiajie32/SortingAlgorithms/issues"
+  },
+  "homepage": "https://github.com/liujiajie32/SortingAlgorithms#readme",
+  "devDependencies": {
+    "webpack": "^3.5.4"
+  }
+}

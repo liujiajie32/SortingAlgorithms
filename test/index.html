@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Selection sorts Test Suite</title>
+  <title>Sorts Test Suite</title>
 </head>
 <body>
   <div id="test"></div>
 
-  <script src="../src/SimpleSorts/SelectionSort/SelectionSort.js"></script>
+  <script src="../dist/sa.js"></script>
   <script> 
     // Browser globals mode:
-    var array = [765,45,4,4,3,3,25,2,1,13,10,0];
-    
+    var array;
+
+    console.log('Output a random array:');
+    console.log(array = sa.GetRandomArray(-50,200,20));
+
     console.log('Output selection sort result in ascending order:');
     console.log(sa.SelectionSort(array));
 
     console.log('Output selection sort result in descending order:');
     console.log(sa.SelectionSort(array,true));
+
   </script>
 
 
