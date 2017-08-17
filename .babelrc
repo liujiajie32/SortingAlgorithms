@@ -1,6 +1,14 @@
 {
   "presets": [
-    "es2015"
+    "es2015",
+    "stage-1"
   ],
-  "plugins": []
+  "plugins": [
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfill": true,
+      "regenerator": true
+    }],
+    'transform-es3-member-expression-literals'
+  ]
 }
