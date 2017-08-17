@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "production": "webpack -p --progress --colors && node zip",
+    "production": "webpack --progress --colors && webpack -p --progress --colors && node zip",
     "test": "webpack --progress --colors"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
     "webpack": "^3.5.4",
     "zip-local": "^0.3.4"
   }
