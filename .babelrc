@@ -9,6 +9,8 @@
       "polyfill": true,
       "regenerator": true
     }],
-    'transform-es3-member-expression-literals'
+    "add-module-exports",
+    "transform-es3-member-expression-literals",
+    "transform-es3-property-literals"
   ]
 }
