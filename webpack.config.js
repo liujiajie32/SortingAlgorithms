@@ -1,12 +1,13 @@
 
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
-var CommonChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin"); 
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
+// const CommonChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin"); 
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // Folder path definition
-var ROOT_PATH = path.resolve(__dirname);
-var JS_DIST_PATH = path.resolve(ROOT_PATH, 'dist/js');
+const ROOT_PATH = path.resolve(__dirname);
+const JS_DIST_PATH = path.resolve(ROOT_PATH, 'dist/js');
 
 
 // Judge if there's an argument '-p' or '--production' in script
@@ -33,7 +34,15 @@ module.exports = {
   },
   plugins: [
     // Abstract common chunks to vendor.js
-    new CommonChunkPlugin({name: 'vendors', filename:'vendors.js'})
+    // new CommonChunkPlugin({name: 'vendors', filename:'vendors.js'}),
+    // Clean dist folder before compiling
+    new CleanWebpackPlugin([
+      path.resolve(JS_DIST_PATH, '*.js'),
+      path.resolve(ROOT_PATH, '*.zip')
+    ], {
+      //root: ROOT_PATH,
+      verbose: true // open console information output
+    })
   ],
   module: {
     loaders:[{
