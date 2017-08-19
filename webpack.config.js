@@ -20,6 +20,14 @@ for (let i in process.argv) {
 }
 var outputName  = isProduction ? 'sa.min' : 'sa';
 
+var cleanPath = [path.resolve(ROOT_PATH, '*.zip')];
+
+if(isProduction) {
+  cleanPath.push(path.resolve(JS_DIST_PATH, '*.min.js'));
+} else {
+  cleanPath.push(path.resolve(JS_DIST_PATH, '*.js'));
+}
+
 
 module.exports = {
   entry:  {
@@ -36,10 +44,7 @@ module.exports = {
     // Abstract common chunks to vendor.js
     // new CommonChunkPlugin({name: 'vendors', filename:'vendors.js'}),
     // Clean dist folder before compiling
-    new CleanWebpackPlugin([
-      path.resolve(JS_DIST_PATH, '*.js'),
-      path.resolve(ROOT_PATH, '*.zip')
-    ], {
+    new CleanWebpackPlugin(cleanPath, {
       //root: ROOT_PATH,
       verbose: true // open console information output
     })
