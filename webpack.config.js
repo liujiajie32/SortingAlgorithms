@@ -1,8 +1,9 @@
+'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-// const CommonChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin"); 
+// const CommonChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin'); 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // Folder path definition
@@ -11,16 +12,16 @@ const JS_DIST_PATH = path.resolve(ROOT_PATH, 'dist/js');
 
 
 // Judge if there's an argument '-p' or '--production' in script
-var isProduction = false;
+let isProduction = false;
 for (let i in process.argv) {
   if (process.argv[i] === '-p' || process.argv[i] === '--production') {
     isProduction = true;
     break;
   }
 }
-var outputName  = isProduction ? 'sa.min' : 'sa';
+//let outputName  = isProduction ? 'sa.min' : 'sa';
 
-var cleanPath = [path.resolve(ROOT_PATH, '*.zip')];
+let cleanPath = [path.resolve(ROOT_PATH, '*.zip')];
 
 if(isProduction) {
   cleanPath.push(path.resolve(JS_DIST_PATH, '*.min.js'));
@@ -29,16 +30,17 @@ if(isProduction) {
 }
 
 
-module.exports = {
+let config = {
   entry:  {
-    [outputName]: [
-      './src/SimpleSorts/SelectionSort/SelectionSort.js',
-      './src/Utils/GetRandomArray.js'
-    ]
+    'sa': './src/sa.all',
+    'GetRandomArray': './src/Utils/GetRandomArray',
+    'SelectionSort': './src/SimpleSorts/SelectionSort/SelectionSort'
   },
   output: {
     path: JS_DIST_PATH,
-    filename: '[name].js'
+    filename: isProduction ? '[name].min.js' : '[name].js',
+    library: '[name]',
+    libraryTarget: 'umd'
   },
   plugins: [
     // Abstract common chunks to vendor.js
@@ -56,16 +58,36 @@ module.exports = {
       loader: 'babel-loader',
       exclude: /(node_modules|bower_components)/,
       // include: JS_DIST_PATH,
-      query: {
+      options: {
+        // Not to use .babelrc or .babelignore files
+        babelrc: false,
+        // use the default cache directory in node_modules/.cache/babel-loader
+        cacheDirectory: true,
+        presets: [
+          'es2015',
+          'stage-1'
+        ],
+        // plugins: [
+        //   ['transform-runtime', {
+        //     'helpers': false,
+        //     'polyfill': true,
+        //     'regenerator': true
+        //   }],
+        //   'add-module-exports',
+        //   'transform-es3-member-expression-literals',
+        //   'transform-es3-property-literals'
+        // ]
+
+
       // presets: ['es2015', 'stage-1']
       }
     }]
   },
 
   resolve:{
-    extensions:['.js', '.jsx', '.css']
+    extensions:['.js']
   }
 
+};
 
-
-}
+module.exports = config;

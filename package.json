@@ -1,14 +1,14 @@
 {
   "name": "sortingalgorithms",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Implementations of sorting algorithms in various languages.",
   "main": " ",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "production": "webpack --progress --colors && webpack -p --progress --colors && node zip",
-    "test": "webpack --progress --colors"
+    "production": "webpack --progress && webpack -p --progress && node zip",
+    "test": "webpack --progress"
   },
   "repository": {
     "type": "git",

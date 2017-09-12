@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["sa"] = factory();
+		exports["SelectionSort"] = factory();
 	else
-		root["sa"] = factory();
+		root["SelectionSort"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -70,94 +70,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * GetRandomArray.js
- *
- * Version 0.0.2
- * Author  LIU Jiajie
- * Date    2017-09-12
- * Detail  Implementation of a Random Array Generator in JavaScript
- *
- * Usage:
- * 
- *   // AMD mode:
- *   require(['GetRandomArray'], function(GetRandomArray) {
- *     var array = [3,2,1];
- *     GetRandomArray(array);
- *   });
- *
- *   // Node mode:
- *   var GetRandomArray = require('GetRandomArray');
- *   var array = [3,2,1];
- *   GetRandomArray(array);
- * 
- *   // Browser globals mode:
- *   <script src="GetRandomArray.js"></script>
- *   <script>
- *     var array = [3,2,1];
- *     sa.GetRandomArray(array);
- *   </script>
- *   
- */
-
-
-/**
- * Determine the input argument is NaN or not.
- * @param  {Number}  n input argument
- * @return {Boolean}   return true if n is NaN, 
- *                     otherwise return false.
- */
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _isNaN = Number.isNaN || function (n) {
-  return typeof n === 'number' && isNaN(n);
-};
-
-/**
- * Get an array of random numbers.
- * @param  {number} min lower limit of random numbers
- * @param  {number} max upper limit of random numbers
- * @param  {number} len length of the output array
- * @return {array}   return an array of random numbers.
- */
-var GetRandomArray = function GetRandomArray(min, max, len) {
-  // Entry validity
-  if (_isNaN(min) || _isNaN(max) || _isNaN(len)) {
-    return;
-  }
-  if (max <= min) {
-    return;
-  }
-
-  var range = void 0,
-      rand = void 0,
-      i = void 0,
-      item = void 0,
-      arr = new Array();
-
-  for (i = 0; i < len; i++) {
-    range = max - min;
-    rand = Math.random();
-    arr.push(Math.round(min) + Math.round(rand * range));
-  }
-
-  return arr;
-}; // end of GetRandomArray
-
-
-exports.default = GetRandomArray;
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -268,57 +185,6 @@ var SelectionSort = function SelectionSort(arr) {
 }; // end of _selectionSort
 
 exports.default = SelectionSort;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * sa.all.js
- *
- * Version 0.0.2
- * Author  LIU Jiajie
- * Date    2017-09-12
- * Detail  Implementation of several sorting algorithms in JavaScript
- *
- * Usage:
- * 
- *   // AMD mode:
- *   require(['sa'], function(sa) {
- *     sa.methodName();
- *   });
- *
- *   // Node mode:
- *   var sa = require('sa');
- *   sa.methodName();
- * 
- *   // Browser globals mode:
- *   <script src="sa.js"></script>
- *   <script>
- *     sa.methodName();
- *   </script>
- * 
- */
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.SelectionSort = exports.GetRandomArray = undefined;
-
-var _GetRandomArray2 = __webpack_require__(0);
-
-var _GetRandomArray3 = _interopRequireDefault(_GetRandomArray2);
-
-var _SelectionSort2 = __webpack_require__(1);
-
-var _SelectionSort3 = _interopRequireDefault(_SelectionSort2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.GetRandomArray = _GetRandomArray3.default;
-exports.SelectionSort = _SelectionSort3.default;
 
 /***/ })
 /******/ ]);
